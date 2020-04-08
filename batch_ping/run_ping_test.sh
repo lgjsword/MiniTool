@@ -5,7 +5,7 @@
 
 ip_range_file="ip_range_recommend.txt"
 ip_file_save="ip_recommend.txt"
-# ./ip_generate.sh $ip_range_file > $ip_file_save
+# ./ip_range_generate/ip_generate.sh $ip_range_file > $ip_file_save
 
 # run test
 # in Linux
@@ -38,11 +38,11 @@ read
 case "$system" in
     Linux | linux )
         echo "Platform is Linux"
-        ./ip_ping.sh $ip_file_save $ip_count $ip_parallel | tee $result_save
+        ./ip_excute/ip_ping.sh $ip_file_save $ip_count $ip_parallel | tee $result_save
         ;;
     Windows | windows | win )
         echo "Platfrom is Windows"
-        ./ip_ping_win.sh $ip_file_save $ip_count $ip_parallel | tee $result_save
+        ./ip_excute/ip_ping_win.sh $ip_file_save $ip_count $ip_parallel | tee $result_save
         ;;
     *) 
         echo "Please select platform"
