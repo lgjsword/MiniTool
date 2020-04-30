@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
-proxy_group="AdBlock REJECT Proxy DIRECT"
-proxy_group[${#proxy_group[@]}]="Driect   DIRECT Proxy  REJECT"
+proxy_group="Direct   DIRECT Proxy  REJECT"
 proxy_group[${#proxy_group[@]}]="Domestic DIRECT Proxy  REJECT"
+proxy_group[${#proxy_group[@]}]="AdBlock  REJECT Proxy  DIRECT"
 proxy_group[${#proxy_group[@]}]="Foreign  Proxy  DIRECT REJECT"
 proxy_group[${#proxy_group[@]}]="Netflix  Proxy  DIRECT REJECT"
 # proxy_group[${#proxy_group[@]}]="Driect  DIRECT Proxy REJECT"
@@ -120,8 +120,9 @@ append_group_name(){
             sed "/-PORT/{s/$/,$name/;s/^/  -  /}" |\
             sed "/GEOIP/{s/$/,$name/;s/^/  -  /}" |\
             sed "/MATCH/d" |\
-            sed "/#/{s/^/  /}" |\
-            sed "/no-resolve/{s/,no-resolve//;s/$/,no-resolve/}" >> $save_file
+            sed "/no-resolve/{s/,no-resolve//;s/$/,no-resolve/}" |\
+            sed "/#/{s/^/  #/}" |\
+            grep -E '#|DOMAIN|IP-CIDR|GEOIP|-PORT|MATCH' >> $save_file
         echo "" >> $save_file
         wait
     done
@@ -134,8 +135,8 @@ append_group_name(){
     echo "  -  DOMAIN-SUFFIX,localhost,Direct" >> $save_file
     echo "  -  IP-CIDR,10.0.0.0/8,Direct" >> $save_file
     echo "  -  IP-CIDR,100.64.0.0/10,Direct" >> $save_file
-    echo "#  -  IP-CIDR,127.0.0.0/8,Direct" >> $save_file
-    echo "#  -  IP-CIDR,172.16.0.0/12,Direct" >> $save_file
+    echo "  #-  IP-CIDR,127.0.0.0/8,Direct" >> $save_file
+    echo "  #-  IP-CIDR,172.16.0.0/12,Direct" >> $save_file
     echo "  -  IP-CIDR,192.168.0.0/16,Direct" >> $save_file
     echo "  -  IP-CIDR6,::1/128,Direct" >> $save_file
     echo "  -  IP-CIDR6,fc00::/7,Direct" >> $save_file
@@ -157,7 +158,7 @@ generate_group(){
     group=$1
     echo "  -  name: $group"
     echo "     type: select"
-    echo "     Proxies:"
+    echo "     proxies:"
 
     if [[ "$2" == "" ]] ; then
         # output default proxies
