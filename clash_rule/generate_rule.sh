@@ -134,8 +134,8 @@ append_group_name(){
     echo "  -  DOMAIN-SUFFIX,localhost,Direct" >> $save_file
     echo "  -  IP-CIDR,10.0.0.0/8,Direct" >> $save_file
     echo "  -  IP-CIDR,100.64.0.0/10,Direct" >> $save_file
-    echo "  -  IP-CIDR,127.0.0.0/8,Direct" >> $save_file
-    echo "  -  IP-CIDR,172.16.0.0/12,Direct" >> $save_file
+    echo "#  -  IP-CIDR,127.0.0.0/8,Direct" >> $save_file
+    echo "#  -  IP-CIDR,172.16.0.0/12,Direct" >> $save_file
     echo "  -  IP-CIDR,192.168.0.0/16,Direct" >> $save_file
     echo "  -  IP-CIDR6,::1/128,Direct" >> $save_file
     echo "  -  IP-CIDR6,fc00::/7,Direct" >> $save_file
