@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
-proxy_group="AdBlock REJECT Proxy DIRECT"
-proxy_group[${#proxy_group[@]}]="Driect   DIRECT Proxy  REJECT"
+proxy_group="Driect   DIRECT Proxy  REJECT"
 proxy_group[${#proxy_group[@]}]="Domestic DIRECT Proxy  REJECT"
+proxy_group[${#proxy_group[@]}]="AdBlock  REJECT Proxy  DIRECT"
 proxy_group[${#proxy_group[@]}]="Foreign  Proxy  DIRECT REJECT"
 proxy_group[${#proxy_group[@]}]="Netflix  Proxy  DIRECT REJECT"
 # proxy_group[${#proxy_group[@]}]="Driect  DIRECT Proxy REJECT"
