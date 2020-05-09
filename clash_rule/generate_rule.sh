@@ -135,7 +135,7 @@ append_group_name(){
     echo "  -  DOMAIN-SUFFIX,localhost,Direct" >> $save_file
     echo "  -  IP-CIDR,10.0.0.0/8,Direct" >> $save_file
     echo "  -  IP-CIDR,100.64.0.0/10,Direct" >> $save_file
-    echo "  #-  IP-CIDR,127.0.0.0/8,Direct" >> $save_file
+    echo "  -  IP-CIDR,127.0.0.0/8,Direct" >> $save_file
     echo "  #-  IP-CIDR,172.16.0.0/12,Direct" >> $save_file
     echo "  -  IP-CIDR,192.168.0.0/16,Direct" >> $save_file
     echo "  -  IP-CIDR6,::1/128,Direct" >> $save_file
@@ -182,7 +182,7 @@ generate_all_group(){
     # $1 is save file
     save_file=$1
     echo "" >> $save_file
-    echo "Proxy Group:" >> $save_file
+    # echo "Proxy Group:" >> $save_file
     for(( list=0;list<${#proxy_group[@]};list++ )) 
     do
         generate_group ${proxy_group[list]} >> $save_file
